@@ -1,0 +1,10 @@
+{
+  "// note": "Root config for markdown formatting via `deno fmt`.",
+  "fmt": {
+    "include": ["README.md", "MANIFESTO.md", "TCB.md", "COPYRIGHT"],
+    "lineWidth": 100,
+    "proseWrap": "preserve",
+    "indentWidth": 2,
+    "useTabs": false
+  }
+}

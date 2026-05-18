@@ -1,0 +1,75 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  rust:
+    name: Rust (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    defaults:
+      run:
+        working-directory: crates
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.94.1
+        with:
+          components: rustfmt, clippy
+      - name: Pin toolchain on PATH
+        run: dirname "$(rustup which cargo)" >> "$GITHUB_PATH"
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: crates
+          cache-on-failure: true
+      - name: Run Rust CI
+        run: ../scripts/ci.sh
+
+  # Lean CI is gated behind a manual workflow_dispatch until the proof build is
+  # vetted on CI infrastructure (cold mathlib compile is ~25 min on standard
+  # runners). Re-enable the `on:` trigger and the workflow guard below to lift.
+  # lean:
+  #   name: Lean proofs
+  #   if: github.event_name == 'workflow_dispatch'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Install elan
+  #       run: |
+  #         curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
+  #         echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+  #     - name: Cache mathlib build
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: |
+  #           proofs/.lake/build
+  #           proofs/.lake/packages
+  #         key: lake-${{ runner.os }}-${{ hashFiles('proofs/lake-manifest.json', 'proofs/lean-toolchain') }}
+  #         restore-keys: |
+  #           lake-${{ runner.os }}-
+  #     - name: Fetch mathlib cache
+  #       working-directory: proofs
+  #       run: |
+  #         lake exe cache get || echo "cache get failed; building from scratch"
+  #     - name: Run Lean CI
+  #       run: bash scripts/lean_ci.sh
+
+  docs:
+    name: Docs lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Check markdown formatting
+        run: deno fmt --check

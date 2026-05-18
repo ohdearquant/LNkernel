@@ -1,3 +1,6 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- Copyright (c) 2026 HaiyangLi -->
+
 # Lion Formal Verification - Trusted Computing Base (TCB)
 
 **Version**: 2.1 (Open Source) **Date**: 2026-01-05 **Status**: END-TO-END CORRECTNESS PROVEN ✓
@@ -209,7 +212,7 @@ Refinement proofs connecting to implementation are not included.
 
 **Gap**: Bugs in the Rust kernel, WASM plugin host, or FFI bindings could violate
 security properties even with correct specifications. The specification proves
-*what* security means; implementation verification proves *that* the code does it.
+_what_ security means; implementation verification proves _that_ the code does it.
 
 ### 3.3 Side-Channel Attacks
 

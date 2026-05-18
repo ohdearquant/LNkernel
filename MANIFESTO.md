@@ -1,3 +1,6 @@
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- Copyright (c) 2026 HaiyangLi -->
+
 # Capability-Bounded Autonomous Reasoning
 
 > A Manifesto for Formally Verified Agentic Systems

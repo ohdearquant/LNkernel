@@ -1,0 +1,15 @@
+Copyright (c) 2026 HaiyangLi <quantocean.li@gmail.com>
+
+This repository contains two separately-licensed components:
+
+  - The Rust implementation under `crates/` is licensed under the
+    GNU Affero General Public License v3.0 or later (AGPL-3.0-or-later).
+    See LICENSE for the full text.
+
+  - The Lean formal proofs under `proofs/` are licensed under the
+    Apache License, Version 2.0. See proofs/LICENSE for the full text.
+
+Top-level documentation files (MANIFESTO.md, TCB.md, README.md, COPYRIGHT)
+are licensed under Apache-2.0 via SPDX header at the top of each file.
+
+"Lion", "Lionrs", and related marks are trademarks of HaiyangLi.
