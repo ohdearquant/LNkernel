@@ -1,4 +1,4 @@
-.PHONY: check clippy test fmt fmt-check build clean ci docs-check lean-build lean-ci lean-clean package publish-dry publish
+.PHONY: check clippy test fmt fmt-check build clean ci rust-ci docs-check lean-build lean-ci lean-clean package publish-dry publish
 
 # ── Rust workspace (crates/) ────────────────────────────────────────────
 
@@ -43,6 +43,13 @@ ci:
 	bash scripts/lean_ci.sh
 	deno fmt --check
 
+# Rust + docs only (skip Lean). Used as the gate for `publish`, since the
+# crates.io upload doesn't ship Lean artefacts and gating on a 25-min
+# mathlib build would block the release path.
+rust-ci:
+	bash scripts/ci.sh
+	deno fmt --check
+
 docs-check:
 	deno fmt --check
 
@@ -62,7 +69,7 @@ publish-dry:
 	cd crates/lion-core && cargo publish --dry-run
 	@echo "Dry run OK. To publish for real: make publish"
 
-publish: ci
+publish: rust-ci
 	@echo "About to publish lion-core to crates.io. This is irreversible."
 	@echo "Cargo.toml version:"
 	@grep '^version' crates/Cargo.toml | head -1
