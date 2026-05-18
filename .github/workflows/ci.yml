@@ -32,7 +32,7 @@ jobs:
           workspaces: crates
           cache-on-failure: true
       - name: Run Rust CI
-        run: ../scripts/ci.sh
+        run: bash ../scripts/ci.sh
 
   # Lean CI is gated behind a manual workflow_dispatch until the proof build is
   # vetted on CI infrastructure (cold mathlib compile is ~25 min on standard
