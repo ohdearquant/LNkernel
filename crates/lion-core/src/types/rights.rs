@@ -1,5 +1,5 @@
 // Copyright (C) 2026 HaiyangLi
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: Apache-2.0
 //! Rights algebra for capability-based access control.
 //!
 //! 10-right system with intersection as combine.

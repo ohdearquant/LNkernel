@@ -1,5 +1,5 @@
 // Copyright (C) 2026 HaiyangLi
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: Apache-2.0
 //! High-level Kernel API wrapping the verified state machine.
 //!
 //! The `Kernel` struct provides an ergonomic interface over the
