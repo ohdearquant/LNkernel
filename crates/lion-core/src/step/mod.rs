@@ -1,5 +1,5 @@
 // Copyright (C) 2026 HaiyangLi
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: Apache-2.0
 //! Lion Step Module
 //!
 //! Step relation and all step constructors for the Lion microkernel state machine.

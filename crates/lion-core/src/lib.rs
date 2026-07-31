@@ -1,5 +1,5 @@
 // Copyright (C) 2026 HaiyangLi
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: Apache-2.0
 //! Lion Core -- production microkernel types, state machine, and kernel API.
 //!
 //! This crate provides the canonical Rust implementation of the Lion microkernel.

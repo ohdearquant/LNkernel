@@ -1,5 +1,5 @@
 // Copyright (C) 2026 HaiyangLi
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: Apache-2.0
 //! Extraction Anchor Module
 //!
 //! This module exists ONLY for styx-rustc extraction. It defines an "export anchor"

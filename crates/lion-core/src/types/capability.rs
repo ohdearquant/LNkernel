@@ -1,5 +1,5 @@
 // Copyright (C) 2026 HaiyangLi
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: Apache-2.0
 //! Lion Core Capability and Crypto Types
 //!
 //! Corresponds to: Lion/Core/Crypto.lean
