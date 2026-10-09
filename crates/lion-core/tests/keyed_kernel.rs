@@ -82,7 +82,7 @@ fn changing_one_right_without_resealing_is_rejected() {
     let child = delegate_read_capability(&mut kernel);
     assert!(kernel.state().kernel().verify_cap_seal(&child));
 
-    let mut changed_rights = child.rights().clone();
+    let mut changed_rights = *child.rights();
     assert!(changed_rights.insert(Right::Write));
     let tampered = Capability::new(
         child.id(),
