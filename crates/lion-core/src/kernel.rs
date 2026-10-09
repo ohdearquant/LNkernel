@@ -6,7 +6,7 @@
 //! state machine. All operations delegate to the verified core.
 
 use crate::state::{PluginState, State};
-use crate::{CapId, Capability, Error, PluginId, SecurityLevel, Size, Step};
+use crate::{CapId, Capability, Error, Key, KeyError, PluginId, SecurityLevel, Size, Step};
 
 /// High-level kernel interface wrapping the verified state machine.
 ///
@@ -34,6 +34,25 @@ impl Kernel {
         Kernel {
             state: State::empty(),
         }
+    }
+
+    /// Create an empty kernel with the supplied seal key at epoch zero.
+    ///
+    /// The caller must supply a secret key from a secure random source.
+    /// Validation checks every byte for the all-zero value; it does not
+    /// establish the key's entropy.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`KeyError`] if every byte of `key` is zero.
+    pub fn with_key(key: [u8; 32]) -> Result<Self, KeyError> {
+        let key = Key::from_bytes(key);
+        if key.is_empty() {
+            return Err(KeyError);
+        }
+        Ok(Self {
+            state: State::empty_with_key(key),
+        })
     }
 
     /// Get a reference to the underlying verified state.

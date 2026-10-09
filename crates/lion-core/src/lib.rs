@@ -25,7 +25,7 @@ pub mod types;
 pub mod extract_anchor;
 
 // Re-export unified Error and Kernel at crate root
-pub use error::Error;
+pub use error::{Error, KeyError};
 pub use kernel::Kernel;
 
 // Re-export commonly used types at crate root

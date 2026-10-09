@@ -147,6 +147,14 @@ pub struct State {
 }
 
 impl State {
+    /// Create an empty state with an initial kernel seal key.
+    pub(crate) fn empty_with_key(key: crate::Key) -> Self {
+        Self {
+            kernel: KernelState::initial(key, crate::PolicyState::default()),
+            ..Self::empty()
+        }
+    }
+
     /// Create a new empty state
     pub fn empty() -> Self {
         State {

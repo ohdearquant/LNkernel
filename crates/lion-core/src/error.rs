@@ -2,6 +2,18 @@
 // SPDX-License-Identifier: Apache-2.0
 //! Unified error type for lion-core operations.
 
+/// The supplied kernel seal key is all zeros.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct KeyError;
+
+impl std::fmt::Display for KeyError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str("kernel seal key must not be all zeros")
+    }
+}
+
+impl std::error::Error for KeyError {}
+
 /// Unified error type for lion-core operations.
 ///
 /// Collects all domain error types so callers only need
